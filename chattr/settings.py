@@ -1,6 +1,7 @@
 from distutils.command.config import config
 import imp
 from pathlib import Path
+from telnetlib import LOGOUT
 from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -19,6 +20,10 @@ print(SECRET_KEY)
 DEBUG = config('DEBUG')
 
 ALLOWED_HOSTS = []
+
+LOGOUT_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/rooms/'
+LOGIN_URL = '/login/'
 
 
 # Application definition
