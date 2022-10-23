@@ -16,24 +16,13 @@
     
         {% if request.user.is_authenticated %}
 
-        <a href="/rooms" class="text-xl text-white hover:text-orange-200"
-        >Rooms</a>
-        <a
-        href="/signup"
-        class="px-5 py-3 text-xl text-white hover:text-orange-200"
-        >Log Out</a
-      >
+        <a href="/rooms" class="text-xl text-white hover:text-orange-200">Rooms</a>
+        <a href="/signup" class="px-5 py-3 text-xl text-white hover:text-orange-200">Log Out</a>
 
         {% else %}
 
-
-        <a href="/login" class="text-xl text-white hover:text-orange-200"
-          >Log In</a>
-        <a
-          href="/signup"
-          class="px-5 py-3 text-xl text-white hover:text-orange-200"
-          >Sign Up</a
-        >
+        <a href="/login/" class="text-xl text-white hover:text-orange-200">Log In</a>
+        <a href="/signup/" class="px-5 py-3 text-xl text-white hover:text-orange-200">Sign Up</a>
 
         {% endif %}
 
