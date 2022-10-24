@@ -15,4 +15,4 @@ def rooms(request):
 def room(request, slug):
     room = Room.objects.get(slug=slug)
 
-    return render(request, 'room/rooms.html', {'room': room})
+    return render(request, 'room/room.html', {'room': room})
