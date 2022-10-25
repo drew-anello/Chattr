@@ -32,8 +32,8 @@
 <script>
     const roomName = JSON.parse(document.getElementById('json-roomname').textContent);
     const userName = JSON.parse(document.getElementById('json-username').textContent);
-        
-    const chatSocket = new WebSocket(
+        let url = `ws://${window.location.host}/ws/socket-server/`
+     const chatSocket = new WebSocket(
         'ws://'
         + window.location.host
         + '/ws/'
@@ -41,22 +41,31 @@
         + '/'
     );
 
-    chatSocket.onclose = function(e) {
+    
+     chatSocket.onmessage = function(e) {
+        const data = JSON.parse(e.data);
+    
+        if (data.message) {
+           let html = '<div class="p-4 bg-teal-400 rounded-xl">'
+            html += '<p class="font-semibold">' + data.username + '</p>';
+           html +=  '<p>' + data.message + '</p></div>'; 
+          
+        } else {
+
+            alert('Message was empty!')
+        }
+    
+            chatSocket.onclose = function(e) {
         console.log('onclose')
     }
 
-    chatSocket.onmessage = function(e) {
-        const data = JSON.parse(e.data);
+   
 
-        if (data.message) {
-          let html = '<div class="p-4 bg-teal-400 rounded-xl">'
-            html += '<p class="font-semibold">' + data.username + '</p>';
-           html +=  '<p>' + data.message + '</p></div>';
+       
+          
         
 
-        } else {
-            alert('The message was empty!')
-        }
+      
 
         scrollToBottom();
     };
@@ -91,15 +100,12 @@
         return false
     };
 
-    /**
-    * A function for finding the messages element, and scroll to the bottom of it.
-    */
+   
     function scrollToBottom() {
         let objDiv = document.getElementById("chat-messages");
         objDiv.scrollTop = objDiv.scrollHeight;
     }
 
-    // Add this below the function to trigger the scroll on load.
     scrollToBottom();
 </script>
 {% endblock %}

@@ -4,8 +4,6 @@ from django.contrib.auth.models import User
 from channels.generic.websocket import AsyncWebsocketConsumer
 from asgiref.sync import sync_to_async
 
-from room.views import room
-
 from .models import Room, Message
 
 
@@ -30,6 +28,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
     # Receive message from WebSocket
     async def receive(self, text_data):
         data = json.loads(text_data)
+        print(data)
         message = data['message']
         username = data['username']
         room = data['room']
@@ -54,8 +53,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
         # Send message to WebSocket
         await self.send(text_data=json.dumps({
             'message': message,
-            'username': username,
-            'room': room,
+            'username': username
         }))
 
     @sync_to_async

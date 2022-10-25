@@ -40,6 +40,7 @@ INSTALLED_APPS = [
 
 
 ]
+ASGI_APPLICATION = 'chattr.asgi.application'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
