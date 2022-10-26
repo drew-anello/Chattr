@@ -1,5 +1,4 @@
 from distutils.command.config import config
-import imp
 from pathlib import Path
 from telnetlib import LOGOUT
 from decouple import config
@@ -31,6 +30,7 @@ LOGIN_URL = '/login/'
 INSTALLED_APPS = [
     'my_app',
     'room',
+    'channels',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
